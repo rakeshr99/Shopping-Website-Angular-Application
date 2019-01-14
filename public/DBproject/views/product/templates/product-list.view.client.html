@@ -1,0 +1,78 @@
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
+
+<link href="themes/css/flexslider.css" rel="stylesheet"/>
+<link href="themes/css/style.css" rel="stylesheet"/>
+<link href="themes/css/main.css" rel="stylesheet"/>
+<div id="top-bar" class="container">
+<div class="row">
+<div class="span4">
+
+	<input type="text"
+		   class="input-block-level search-query"
+		   id = "TextBoxId"
+		   ng-keyup="$event.keyCode == 13 ? model.searchProductByName(productName) : null"
+		   ng-model="productName"
+		   placeholder="eg. T-shirt">
+
+
+</div>
+<div class="span8 homespan8li">
+	<div class="account pull-right">
+		<ul class="user-menu">
+			<li ng-if="!model.curretLoggedUser._id"><a href="#!/login">Login</a></li>
+			<li ng-if="!model.curretLoggedUser._id"><a href="#!/register">Register</a></li>
+			<li ng-if="model.curretLoggedUser._id"><a href="#!/profile">My Account</a></li>
+			<li ng-if="model.curretLoggedUser._id"><a ng-click="model.logout()" class= "pointer">Logout</a></li>
+			<li ng-if="model.curretLoggedUser.roles.indexOf('ADMIN') > -1"><a href="#!/admin">Admin</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+</div>
+<div id="wrapper" class="container">
+	<section class="navbar main-menu">
+		<div class="navbar-inner main-menu">
+			<a href="#!/" class="logo pull-left"><img src="https://github.com/vaibhavkarnam/ShoppingSite/blob/master/public/DBproject/themes/images/logo.png?raw=true" class="site_logo" alt=""></a>
+			<nav id="menu" class="pull-right">
+				<ul>
+					<li><a ng-click="model.searchProductByName('Clothing')" class= "pointer">Clothing</a></li>
+					<li><a ng-click="model.searchProductByName('Electronics')" class= "pointer">Electronics</a></li>
+					<li><a ng-click="model.searchProductByName('Books')" class= "pointer">Books</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+	<section class="header_text sub">
+	<img class="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-YVxhI4W6PtaZdRc9VHBuoJXp9W8o83DTo4dcWxJNhK4cnf-hg" alt="New products" >
+		<h4><span>Product List</span></h4>
+	</section>
+	<section class="main-content">
+
+		<div class="row">
+			<div class="span12">
+				<ul class="thumbnails listing-products list-group">
+					<li ng-repeat="product in model.productList" class="span3 list-group-item productlistli">
+						<div class="product-box">
+							<span class="sale_tag"></span>
+							<a href="" ng-click="model.getProductDetails(product.itemId)"><img class= "productlistliimage" alt="" src="{{product.imageEntities[0].mediumImage}}"></a><br/>
+							<a href="" ng-click="model.getProductDetails(product.itemId)" class="title">{{product.name}}</a><br/>
+							<a><img alt="" src="{{product.customerRatingImage}}" height="140px"></a><br/>
+							<!--<a href="#" class="category">Phasellus consequat</a>-->
+							<p class="price">$ {{product.salePrice}}</p>
+						</div>
+					</li>
+				</ul>
+				<hr>
+			</div>
+
+
+
+		</div>
+	</section>
+	<section id="copyright">
+		<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+	</section>
+</div>
+<script src="../../../themes/js/common.js"></script>
